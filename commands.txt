@@ -1,0 +1,181 @@
+CREATE WEB_APP
+
+>>django-admin startproject <project_name>
+>>> cd <project_name>
+
+CREATE APP
+
+>>python manage.py startapp <app_name>
+-> Create app views in views.py
+-> Create app urls in urls.py
+-> Link app urls with project urls in urls.py
+
+>>python manage.py migrate
+-add your app in settings.py INSTALLED_APP
+>>python manage.py makemigrations <app_name>
+- create templates folder and its files
+
+{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{Templating}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}
+
+{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{Filters}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}
+
+data={'first_name':'Mukesh', 'last_name': 'Kumar', 'some_list':[1,2,3,4,5], 'some_dict': {'inside_key': 'inside_val'}}
+,context= data
+
+{{first_name}}:{{last_name}} -> Mukesh:Kumar
+{{some_list}} -> [1,2,3,4,5]
+{{some_list.2}} -> 3
+{{some_dict.inside_key}} -> inside_val
+
+{# This is a comment #}
+
+{{first_name | upper}} -> MUKESH    (upper,length,)  {| lower | upper}
+
+Built-in filter reference (
+    add
+    addslashes
+    capfirst
+    center
+    cut
+    date
+    default
+    default_if_none
+    dictsort
+    dictsortreversed
+    divisibleby
+    escape
+    escapejs
+    filesizeformat
+    first
+    floatformat
+    force_escape
+    get_digit
+    iriencode
+    join
+    json_script
+    last
+    length
+    length_is
+    linebreaks
+    linebreaksbr
+    linenumbers
+    ljust
+    lower
+    make_list
+    phone2numeric
+    pluralize
+    pprint
+    random
+    rjust
+    safe
+    safeseq
+    slice
+    slugify
+    stringformat
+    striptags
+    time
+    timesince
+    timeuntil
+    title
+    truncatechars
+    truncatechars_html
+    truncatewords
+    truncatewords_html
+    unordered_list
+    upper
+    urlencode
+    urlize
+    urlizetrunc
+    wordcount
+    wordwrap
+    yesno
+)
+
+{{{{{{{{{{%%%%%%%%%%%%%%%%%%%{{{{{{{{{{{{{{{{{Tags}}}}}}}}}}}}}}}}%%%%%%%%%%%%}}}}}}}}}}}
+
+Built-in tag reference
+    autoescape
+    block
+    comment
+    csrf_token
+    cycle
+    debug
+    extends
+    filter
+    firstof
+    for
+    for … empty
+    if
+    Boolean operators
+    == operator
+    != operator
+    < operator
+    > operator
+    <= operator
+    >= operator
+    in operator
+    not in operator
+    is operator
+    is not operator
+    Filters
+    Complex expressions
+    ifchanged
+    include
+    load
+    lorem
+    now
+    regroup
+    Grouping on other properties
+    resetcycle
+    spaceless
+    templatetag
+    url
+    verbatim
+    widthratio
+    with
+
+For loop................
+
+<ol>
+{% for val in some_list %}
+    <li> {{val}} </li>
+{% endfor %}
+</ol>
+
+{% if first_name %}
+    {{first_name}}
+{% endif %}
+
+
+{{{{{{{{{{{{{{{{{{{{%%%%%%%%%%%%%%      page redirect      %%%%%%%%%%%%%%}}}}}}}}}}}}}}}}}}}}
+
+<a href="{% url '<app_name:<path_name>' %}">Learn more about Django</app_name:>
+
+in app urls.py
+
+app_name = '<app_name>'
+
+-give paths a unique name
+
+{{{{{{{{{{{{{{{{{{{{%%%%%%%%%%%%%%      page template      %%%%%%%%%%%%%%}}}}}}}}}}}}}}}}}}}}
+
+>>>>>>>base.html
+
+---------
+{% block content %}
+{% endblock %}
+---------
+
+>>>>>>>>index.html
+
+{% extends 'my_app:base.html' %}                           // {% extends '<app_name>:base.html' %}
+----- base.html content-------
+{% block content %}
+------- index.html page content  ------------
+{% endblock %}
+----- base.html content-------
+
+
+
+
+
