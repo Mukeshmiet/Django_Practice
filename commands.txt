@@ -178,163 +178,163 @@ app_name = '<app_name>'
 
 ///////// DATABASE ////////////
 
->> python manage.py migrate
+    >> python manage.py migrate
 
-    .makemigrations only make migrate file in apps
+        .makemigrations only make migrate file in apps
 
-    .migrate runs all existing migration files in apps
+        .migrate runs all existing migration files in apps
 
-    .sqlmigrate used to debug sql commends and to see running qsl commands
+        .sqlmigrate used to debug sql commends and to see running qsl commands
 
--> add app name in settings.py from apps.py class name
+    -> add app name in settings.py from apps.py class name
 
->> python manage.py makemigrations app_office
+    >> python manage.py makemigrations app_office
 
-    Migrations for 'app_office':
-    app_office\migrations\0001_initial.py
-        - Create model Patient
+        Migrations for 'app_office':
+        app_office\migrations\0001_initial.py
+            - Create model Patient
 
->> python manage.py sqlmigrate app_office 0001
+    >> python manage.py sqlmigrate app_office 0001
 
-    BEGIN;
-    --
-    -- Create model Patient
-    --
-    CREATE TABLE "app_office_patient" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "first_name" varchar(30) NOT NULL, "last_name" varchar(30) NOT NULL, "age" integer NOT NULL);
-    COMMIT;
+        BEGIN;
+        --
+        -- Create model Patient
+        --
+        CREATE TABLE "app_office_patient" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "first_name" varchar(30) NOT NULL, "last_name" varchar(30) NOT NULL, "age" integer NOT NULL);
+        COMMIT;
 
->> python manage.py migrate
+    >> python manage.py migrate
 
-CRUD operations
+    CRUD operations
 
-    CREATING DATA
+        CREATING DATA
+                >>python manage.py shell
+
+            object and <modelclass>.save()
+
+                patient1 = Patient(first_name= 'fname1', last_name='lname1', age=20)
+                patient1.save()
+                ---------------------------------------------------------------------
+                >>> from app_office.models import Patient 
+                >>> patient1 = Patient(first_name= 'fname1', last_name='lname1', age=20)
+                >>> patient1.age > 40
+                False
+                >>> patient1.age < 40  
+                True
+                >>> patient1.save() 
+
+            <modelclass>.object.create()
+
+                Patient.objects.create(first_name= 'fname2', last_name='lname2', age=22)
+                ------------------------------------------------------------------------
+                <Patient: Patient object (2)>
+
+            <modelclass>.objects.bulk_create
+
+                Patient.objects.bulk_create([
+                    Patient(first_name= 'fname3', last_name='lname3', age=12),
+                    Patient(first_name= 'fname4', last_name='lname4', age=32)
+                ])
+                ---------------------------------------------------------------
+
+        READING DATA (django model manager)
+
             >>python manage.py shell
 
-        object and <modelclass>.save()
+            .all()
 
-            patient1 = Patient(first_name= 'fname1', last_name='lname1', age=20)
-            patient1.save()
-            ---------------------------------------------------------------------
-            >>> from app_office.models import Patient 
-            >>> patient1 = Patient(first_name= 'fname1', last_name='lname1', age=20)
-            >>> patient1.age > 40
-            False
-            >>> patient1.age < 40  
-            True
-            >>> patient1.save() 
+                Patient.objects.all()
+                    -----------------
+                    <QuerySet [<Patient: Patient object (1)>, <Patient: Patient object (2)>]>
+                Patient.objects.all()[1]
+                    ---------------------
+                    <Patient: Patient object (2)>
+                
+                *now i created str representation in Patient class and restarted the shell
 
-        <modelclass>.object.create()
+                Patient.objects.all()[1]
+                    --------------------- 
+                    <Patient: Fname2 Lname2 is 22 yrs old.> 
+                
+                Patient.objects.all()
+                    ------------------
+                    <QuerySet [<Patient: Fname1 Lname1 is 20 yrs old.>, <Patient: Fname2 Lname2 is 22 yrs old.>]>
 
-            Patient.objects.create(first_name= 'fname2', last_name='lname2', age=22)
-            ------------------------------------------------------------------------
-            <Patient: Patient object (2)>
+            .get()   // pk = 1 // age = 32 // last_name=Lname1
 
-        <modelclass>.objects.bulk_create
-
-            Patient.objects.bulk_create([
-                Patient(first_name= 'fname3', last_name='lname3', age=12),
-                Patient(first_name= 'fname4', last_name='lname4', age=32)
-            ])
-            ---------------------------------------------------------------
-
-    READING DATA (django model manager)
-
-        >>python manage.py shell
-
-        .all()
-
-            Patient.objects.all()
-                -----------------
-                <QuerySet [<Patient: Patient object (1)>, <Patient: Patient object (2)>]>
-            Patient.objects.all()[1]
-                ---------------------
-                <Patient: Patient object (2)>
-            
-            *now i created str representation in Patient class and restarted the shell
-
-            Patient.objects.all()[1]
-                --------------------- 
-                <Patient: Fname2 Lname2 is 22 yrs old.> 
-            
-            Patient.objects.all()
-                ------------------
-                <QuerySet [<Patient: Fname1 Lname1 is 20 yrs old.>, <Patient: Fname2 Lname2 is 22 yrs old.>]>
-
-        .get()   // pk = 1 // age = 32 // last_name=Lname1
-
-            >>> Patient.objects.get(pk=1)
-            <Patient: Fname1 Lname1 is 20 yrs old.>
-            >>> Patient.objects.get(pk=2) 
-            <Patient: Fname2 Lname2 is 22 yrs old.>
-            >>> Patient.objects.get(pk=3)
-            <Patient: Fname3 Lname3 is 12 yrs old.>
-            >>> Patient.objects.get(pk=4) 
-            <Patient: Fname4 Lname4 is 32 yrs old.>
-            >>> Patient.objects.get(pk=5) 
-        
-        -- QuerySets API reference in django docu.mnt  (data filtering methods)
-
-        .filter()
-
-            >>> Patient.objects.filter().all()
-            <QuerySet [
-                <Patient: Fname1 Lname1 is 20 yrs old.>,
-                <Patient: Fname2 Lname2 is 22 yrs old.>,
-                <Patient: Fname3 Lname3 is 12 yrs old.>,
+                >>> Patient.objects.get(pk=1)
+                <Patient: Fname1 Lname1 is 20 yrs old.>
+                >>> Patient.objects.get(pk=2) 
+                <Patient: Fname2 Lname2 is 22 yrs old.>
+                >>> Patient.objects.get(pk=3)
+                <Patient: Fname3 Lname3 is 12 yrs old.>
+                >>> Patient.objects.get(pk=4) 
                 <Patient: Fname4 Lname4 is 32 yrs old.>
-                ]>
+                >>> Patient.objects.get(pk=5) 
             
-            >>> Patient.objects.filter(age=20).all()              
-            <QuerySet [<Patient: Fname1 Lname1 is 20 yrs old.>]>
-        
-            ------------------------------------------------------
+            -- QuerySets API reference in django docu.mnt  (data filtering methods)
 
-            >>> from django.db.models import Q 
+            .filter()
 
-                >>> Patient.objects.filter(Q(age=20) & Q(last_name='Lname1')).all()
-                <QuerySet []>
-                >>> Patient.objects.filter(Q(age=20) | Q(last_name='Lname1')).all() 
+                >>> Patient.objects.filter().all()
+                <QuerySet [
+                    <Patient: Fname1 Lname1 is 20 yrs old.>,
+                    <Patient: Fname2 Lname2 is 22 yrs old.>,
+                    <Patient: Fname3 Lname3 is 12 yrs old.>,
+                    <Patient: Fname4 Lname4 is 32 yrs old.>
+                    ]>
+                
+                >>> Patient.objects.filter(age=20).all()              
                 <QuerySet [<Patient: Fname1 Lname1 is 20 yrs old.>]>
-
-            -- Filed Lookups in django docu.mtn..
             
-        .exclude()
+                ------------------------------------------------------
 
-    UPDATE DATA
+                >>> from django.db.models import Q 
 
-        from django.core.validators import MinValueValidator, MinValueValidator
+                    >>> Patient.objects.filter(Q(age=20) & Q(last_name='Lname1')).all()
+                    <QuerySet []>
+                    >>> Patient.objects.filter(Q(age=20) | Q(last_name='Lname1')).all() 
+                    <QuerySet [<Patient: Fname1 Lname1 is 20 yrs old.>]>
 
-            age = models.IntegerField( validators=[MinValueValidator(8),MaxValueValidator(92)])
-            hrate = models.IntegerField(default=60, validators=[MinValueValidator(52),MaxValueValidator(82)])
+                -- Filed Lookups in django docu.mtn..
+                
+            .exclude()
 
-        >>>python manage.py makemigrations app_office
+        UPDATE DATA
 
-            Migrations for 'app_office':
-            app_office\migrations\0002_patient_hrate_alter_patient_age.py
-                - Add field hrate to patient
-                - Alter field age on patient
+            from django.core.validators import MinValueValidator, MinValueValidator
 
-            >>>python manage.py migrate
+                age = models.IntegerField( validators=[MinValueValidator(8),MaxValueValidator(92)])
+                hrate = models.IntegerField(default=60, validators=[MinValueValidator(52),MaxValueValidator(82)])
 
-                Operations to perform:
-                Apply all migrations: admin, app_office, auth, contenttypes, sessions
-                Running migrations:
-                Applying app_office.0002_patient_hrate_alter_patient_age... OK
+            >>>python manage.py makemigrations app_office
 
-        *to change value then just get() it in a variable then reassign new value, after that .save() it.
+                Migrations for 'app_office':
+                app_office\migrations\0002_patient_hrate_alter_patient_age.py
+                    - Add field hrate to patient
+                    - Alter field age on patient
 
-    DELETE DATA
+                >>>python manage.py migrate
 
-        *to delete value then just get() it in a variable then use .delete() it.
+                    Operations to perform:
+                    Apply all migrations: admin, app_office, auth, contenttypes, sessions
+                    Running migrations:
+                    Applying app_office.0002_patient_hrate_alter_patient_age... OK
 
-Data from DB to Templates
+            *to change value then just get() it in a variable then reassign new value, after that .save() it.
 
-    1. create urls.py file in your app
-    2. create views and link urls.py in project urls.py
-    3. add sql in view and convert it into dict object
-    4. create templates/app_office folders inside app and include it in project settings.py file
-    5. then create patients.html inside templates folder
-    6. use django jinja template in html
+        DELETE DATA
+
+            *to delete value then just get() it in a variable then use .delete() it.
+
+    Data from DB to Templates
+
+        1. create urls.py file in your app
+        2. create views and link urls.py in project urls.py
+        3. add sql in view and convert it into dict object
+        4. create templates/app_office folders inside app and include it in project settings.py file
+        5. then create patients.html inside templates folder
+        6. use django jinja template in html
 
 
 
