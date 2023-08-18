@@ -176,6 +176,7 @@ app_name = '<app_name>'
 ----- base.html content-------
 
 
+///////// DATABASE ////////////
 
-
+>> python manage.py migrate
 
