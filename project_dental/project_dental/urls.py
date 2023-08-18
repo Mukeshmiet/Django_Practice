@@ -1,5 +1,5 @@
 """
-URL configuration for first_web_app project.
+URL configuration for project_dental project.
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/4.2/topics/http/urls/
@@ -16,11 +16,8 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-# from firstapp import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('simple_view/',include('app_one.urls')),
-    # path('first_app/',views.first_app),
-    # path('date/',views.dis_date),
+    path('office/', include('app_office.urls')),
 ]
