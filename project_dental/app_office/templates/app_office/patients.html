@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>patients</title>
+</head>
+<body>
+    <h1>ALL REGISTERED PATIENTS</h1><br>
+    <ul>
+        {% for patient in all_patients %}
+            <li>{{patient.last_name}}, {{patient.first_name}}, {{patient.age}}</li>
+            <li>{{patient}}</li>
+            <br>
+        {% endfor %}
+    </ul>
+</body>
+</html>

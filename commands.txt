@@ -329,6 +329,13 @@ CRUD operations
 
 Data from DB to Templates
 
+    1. create urls.py file in your app
+    2. create views and link urls.py in project urls.py
+    3. add sql in view and convert it into dict object
+    4. create templates/app_office folders inside app and include it in project settings.py file
+    5. then create patients.html inside templates folder
+    6. use django jinja template in html
+
 
 
 
