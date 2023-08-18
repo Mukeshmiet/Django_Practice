@@ -206,37 +206,97 @@ app_name = '<app_name>'
 >> python manage.py migrate
 
 CREATING DATA
+        >>python manage.py shell
+
+    object and <modelclass>.save()
+
+        patient1 = Patient(first_name= 'fname1', last_name='lname1', age=20)
+        patient1.save()
+        ---------------------------------------------------------------------
+        >>> from app_office.models import Patient 
+        >>> patient1 = Patient(first_name= 'fname1', last_name='lname1', age=20)
+        >>> patient1.age > 40
+        False
+        >>> patient1.age < 40  
+        True
+        >>> patient1.save() 
+
+    <modelclass>.object.create()
+
+        Patient.objects.create(first_name= 'fname2', last_name='lname2', age=22)
+        ------------------------------------------------------------------------
+        <Patient: Patient object (2)>
+
+    <modelclass>.objects.bulk_create
+
+        Patient.objects.bulk_create([
+            Patient(first_name= 'fname3', last_name='lname3', age=12),
+            Patient(first_name= 'fname4', last_name='lname4', age=32)
+        ])
+        ---------------------------------------------------------------
+
+READING DATA (django model manager)
+
     >>python manage.py shell
 
-object and <modelclass>.save()
+    .all()
 
-    patient1 = Patient(first_name= 'fname1', last_name='lname1', age=20)
-    patient1.save()
-    ---------------------------------------------------------------------
-    >>> from app_office.models import Patient 
-    >>> patient1 = Patient(first_name= 'fname1', last_name='lname1', age=20)
-    >>> patient1.age > 40
-    False
-    >>> patient1.age < 40  
-    True
-    >>> patient1.save() 
+        Patient.objects.all()
+            -----------------
+            <QuerySet [<Patient: Patient object (1)>, <Patient: Patient object (2)>]>
+        Patient.objects.all()[1]
+            ---------------------
+            <Patient: Patient object (2)>
+        
+        *now i created str representation in Patient class and restarted the shell
 
-<modelclass>.object.create()
+        Patient.objects.all()[1]
+            --------------------- 
+            <Patient: Fname2 Lname2 is 22 yrs old.> 
+        
+        Patient.objects.all()
+            ------------------
+            <QuerySet [<Patient: Fname1 Lname1 is 20 yrs old.>, <Patient: Fname2 Lname2 is 22 yrs old.>]>
 
-    Patient.objects.create(first_name= 'fname2', last_name='lname2', age=22)
-    ------------------------------------------------------------------------
-    <Patient: Patient object (2)>
+    .get()   // pk = 1 // age = 32 // last_name=Lname1
 
-<modelclass>.objects.bulk_create
+        >>> Patient.objects.get(pk=1)
+        <Patient: Fname1 Lname1 is 20 yrs old.>
+        >>> Patient.objects.get(pk=2) 
+        <Patient: Fname2 Lname2 is 22 yrs old.>
+        >>> Patient.objects.get(pk=3)
+        <Patient: Fname3 Lname3 is 12 yrs old.>
+        >>> Patient.objects.get(pk=4) 
+        <Patient: Fname4 Lname4 is 32 yrs old.>
+        >>> Patient.objects.get(pk=5) 
+    
+    -- QuerySets API reference in django docu.mnt  (data filtering methods)
 
-    Patient.objects.bulk_create([
-        Patient(first_name= 'fname3', last_name='lname3', age=12),
-        Patient(first_name= 'fname4', last_name='lname4', age=32)
-    ])
-    ---------------------------------------------------------------
+    .filter()
 
+        >>> Patient.objects.filter().all()
+        <QuerySet [
+            <Patient: Fname1 Lname1 is 20 yrs old.>,
+            <Patient: Fname2 Lname2 is 22 yrs old.>,
+            <Patient: Fname3 Lname3 is 12 yrs old.>,
+            <Patient: Fname4 Lname4 is 32 yrs old.>
+            ]>
+        
+        >>> Patient.objects.filter(age=20).all()              
+        <QuerySet [<Patient: Fname1 Lname1 is 20 yrs old.>]>
+    
+        ------------------------------------------------------
 
+        >>> from django.db.models import Q 
 
+            >>> Patient.objects.filter(Q(age=20) & Q(last_name='Lname1')).all()
+            <QuerySet []>
+            >>> Patient.objects.filter(Q(age=20) | Q(last_name='Lname1')).all() 
+            <QuerySet [<Patient: Fname1 Lname1 is 20 yrs old.>]>
+
+        -- Filed Lookups in django docu.mtn..
+        
+    .exclude()
 
 
 
