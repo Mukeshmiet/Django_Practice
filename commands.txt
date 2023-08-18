@@ -180,3 +180,39 @@ app_name = '<app_name>'
 
 >> python manage.py migrate
 
+    .makemigrations only make migrate file in apps
+
+    .migrate runs all existing migration files in apps
+
+    .sqlmigrate used to debug sql commends and to see running qsl commands
+
+-> add app name in settings.py from apps.py class name
+
+>> python manage.py makemigrations app_office
+
+    Migrations for 'app_office':
+    app_office\migrations\0001_initial.py
+        - Create model Patient
+
+>> python manage.py sqlmigrate app_office 0001
+
+    BEGIN;
+    --
+    -- Create model Patient
+    --
+    CREATE TABLE "app_office_patient" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "first_name" varchar(30) NOT NULL, "last_name" varchar(30) NOT NULL, "age" integer NOT NULL);
+    COMMIT;
+
+>> python manage.py migrate
+
+
+
+
+
+
+
+
+
+
+
+
