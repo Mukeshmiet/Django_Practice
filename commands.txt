@@ -205,6 +205,44 @@ app_name = '<app_name>'
 
 >> python manage.py migrate
 
+CREATING DATA
+    >>python manage.py shell
+
+object and <modelclass>.save()
+
+    patient1 = Patient(first_name= 'fname1', last_name='lname1', age=20)
+    patient1.save()
+    ---------------------------------------------------------------------
+    >>> from app_office.models import Patient 
+    >>> patient1 = Patient(first_name= 'fname1', last_name='lname1', age=20)
+    >>> patient1.age > 40
+    False
+    >>> patient1.age < 40  
+    True
+    >>> patient1.save() 
+
+<modelclass>.object.create()
+
+    Patient.objects.create(first_name= 'fname2', last_name='lname2', age=22)
+    ------------------------------------------------------------------------
+    <Patient: Patient object (2)>
+
+<modelclass>.objects.bulk_create
+
+    Patient.objects.bulk_create([
+        Patient(first_name= 'fname3', last_name='lname3', age=12),
+        Patient(first_name= 'fname4', last_name='lname4', age=32)
+    ])
+    ---------------------------------------------------------------
+
+
+
+
+
+
+
+
+
 
 
 
