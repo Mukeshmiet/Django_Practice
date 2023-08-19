@@ -10,6 +10,7 @@ def rental_review(request):
         form = reviewForm(request.POST)
         if form.is_valid():
             print(form.cleaned_data)
+            form.save()
             return redirect(reverse('cars:thank_you'))
             # return HttpResponseRedirect('/thank_you')
         else:
