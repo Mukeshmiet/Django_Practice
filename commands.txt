@@ -1,35 +1,35 @@
 CREATE WEB_APP
 
->>django-admin startproject <project_name>
->>> cd <project_name>
+    >>django-admin startproject <project_name>
+    >>> cd <project_name>
 
 CREATE APP
 
->>python manage.py startapp <app_name>
--> Create app views in views.py
--> Create app urls in urls.py
--> Link app urls with project urls in urls.py
+    >>python manage.py startapp <app_name>
+    -> Create app views in views.py
+    -> Create app urls in urls.py
+    -> Link app urls with project urls in urls.py
 
->>python manage.py migrate
--add your app in settings.py INSTALLED_APP
->>python manage.py makemigrations <app_name>
-- create templates folder and its files
+    >>python manage.py migrate
+    -add your app in settings.py INSTALLED_APP
+    >>python manage.py makemigrations <app_name>
+    - create templates folder and its files
 
 {{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{Templating}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}
 
-{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{Filters}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}
+    {{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{Filters}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}
 
-data={'first_name':'Mukesh', 'last_name': 'Kumar', 'some_list':[1,2,3,4,5], 'some_dict': {'inside_key': 'inside_val'}}
-,context= data
+        data={'first_name':'Mukesh', 'last_name': 'Kumar', 'some_list':[1,2,3,4,5], 'some_dict': {'inside_key': 'inside_val'}}
+        ,context= data
 
-{{first_name}}:{{last_name}} -> Mukesh:Kumar
-{{some_list}} -> [1,2,3,4,5]
-{{some_list.2}} -> 3
-{{some_dict.inside_key}} -> inside_val
+        {{first_name}}:{{last_name}} -> Mukesh:Kumar
+        {{some_list}} -> [1,2,3,4,5]
+        {{some_list.2}} -> 3
+        {{some_dict.inside_key}} -> inside_val
 
-{# This is a comment #}
+        {# This is a comment #}
 
-{{first_name | upper}} -> MUKESH    (upper,length,)  {| lower | upper}
+        {{first_name | upper}} -> MUKESH    (upper,length,)  {| lower | upper}
 
 Built-in filter reference (
     add
@@ -93,88 +93,88 @@ Built-in filter reference (
 
 {{{{{{{{{{%%%%%%%%%%%%%%%%%%%{{{{{{{{{{{{{{{{{Tags}}}}}}}}}}}}}}}}%%%%%%%%%%%%}}}}}}}}}}}
 
-Built-in tag reference
-    autoescape
-    block
-    comment
-    csrf_token
-    cycle
-    debug
-    extends
-    filter
-    firstof
-    for
-    for … empty
-    if
-    Boolean operators
-    == operator
-    != operator
-    < operator
-    > operator
-    <= operator
-    >= operator
-    in operator
-    not in operator
-    is operator
-    is not operator
-    Filters
-    Complex expressions
-    ifchanged
-    include
-    load
-    lorem
-    now
-    regroup
-    Grouping on other properties
-    resetcycle
-    spaceless
-    templatetag
-    url
-    verbatim
-    widthratio
-    with
+    Built-in tag reference
+        autoescape
+        block
+        comment
+        csrf_token
+        cycle
+        debug
+        extends
+        filter
+        firstof
+        for
+        for … empty
+        if
+        Boolean operators
+        == operator
+        != operator
+        < operator
+        > operator
+        <= operator
+        >= operator
+        in operator
+        not in operator
+        is operator
+        is not operator
+        Filters
+        Complex expressions
+        ifchanged
+        include
+        load
+        lorem
+        now
+        regroup
+        Grouping on other properties
+        resetcycle
+        spaceless
+        templatetag
+        url
+        verbatim
+        widthratio
+        with
 
-For loop................
+    For loop................
 
-<ol>
-{% for val in some_list %}
-    <li> {{val}} </li>
-{% endfor %}
-</ol>
+        <ol>
+        {% for val in some_list %}
+            <li> {{val}} </li>
+        {% endfor %}
+        </ol>
 
-{% if first_name %}
-    {{first_name}}
-{% endif %}
+    if cond................
 
+        {% if first_name %}
+            {{first_name}}
+        {% endif %}
 
 {{{{{{{{{{{{{{{{{{{{%%%%%%%%%%%%%%      page redirect      %%%%%%%%%%%%%%}}}}}}}}}}}}}}}}}}}}
 
-<a href="{% url '<app_name:<path_name>' %}">Learn more about Django</app_name:>
+    <a href="{% url '<app_name:<path_name>' %}">Learn more about Django</app_name:>
 
-in app urls.py
+    in app urls.py
 
-app_name = '<app_name>'
+    app_name = '<app_name>'
 
--give paths a unique name
+    -give paths a unique name
 
 {{{{{{{{{{{{{{{{{{{{%%%%%%%%%%%%%%      page template      %%%%%%%%%%%%%%}}}}}}}}}}}}}}}}}}}}
 
->>>>>>>base.html
+    >>>>>>>base.html
 
----------
-{% block content %}
-{% endblock %}
----------
+    ---------
+    {% block content %}
+    {% endblock %}
+    ---------
 
->>>>>>>>index.html
+    >>>>>>>>index.html
 
-{% extends 'my_app:base.html' %}                           // {% extends '<app_name>:base.html' %}
------ base.html content-------
-{% block content %}
-------- index.html page content  ------------
-{% endblock %}
------ base.html content-------
-
+    {% extends 'my_app:base.html' %}                           // {% extends '<app_name>:base.html' %}
+    ----- base.html content-------
+    {% block content %}
+    ------- index.html page content  ------------
+    {% endblock %}
+    ----- base.html content-------
 
 ///////// DATABASE ////////////
 
@@ -336,9 +336,11 @@ app_name = '<app_name>'
         5. then create patients.html inside templates folder
         6. use django jinja template in html
 
+//////////////Django Admin access and configure interface ////////////////
 
+    - only for DB operations and user login data changes
 
-
+    
 
 
 
