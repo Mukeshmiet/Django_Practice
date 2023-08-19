@@ -15,9 +15,9 @@ CREATE APP
     >>python manage.py makemigrations <app_name>
     - create templates folder and its files
 
-{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{Templating}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}
+//////////////////////////////////  {{Templating}}  //////////////////////////////
 
-    {{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{Filters}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}
+   ///////////////////////////  {{Filters}}  //////////////////////////////////
 
         data={'first_name':'Mukesh', 'last_name': 'Kumar', 'some_list':[1,2,3,4,5], 'some_dict': {'inside_key': 'inside_val'}}
         ,context= data
@@ -91,7 +91,7 @@ Built-in filter reference (
     yesno
 )
 
-{{{{{{{{{{%%%%%%%%%%%%%%%%%%%{{{{{{{{{{{{{{{{{Tags}}}}}}}}}}}}}}}}%%%%%%%%%%%%}}}}}}}}}}}
+/////////////////////////  {{Tags}} ///////////////////////////
 
     Built-in tag reference
         autoescape
@@ -148,7 +148,7 @@ Built-in filter reference (
             {{first_name}}
         {% endif %}
 
-{{{{{{{{{{{{{{{{{{{{%%%%%%%%%%%%%%      page redirect      %%%%%%%%%%%%%%}}}}}}}}}}}}}}}}}}}}
+////////////////////////      {%page redirect%}      ////////////////////////////
 
     <a href="{% url '<app_name:<path_name>' %}">Learn more about Django</app_name:>
 
@@ -158,7 +158,7 @@ Built-in filter reference (
 
     -give paths a unique name
 
-{{{{{{{{{{{{{{{{{{{{%%%%%%%%%%%%%%      page template      %%%%%%%%%%%%%%}}}}}}}}}}}}}}}}}}}}
+////////////////////////     {% page template %}     ////////////////////////
 
     >>>>>>>base.html
 
@@ -358,6 +358,7 @@ Built-in filter reference (
     11. Create super user:
         >>python manage.py createsuperuser and then login on "admin/"
 
+////////////////////////// Django Forms ///////////////////////////////
 
 
 
