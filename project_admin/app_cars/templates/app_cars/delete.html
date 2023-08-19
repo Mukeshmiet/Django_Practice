@@ -2,6 +2,18 @@
 
 {% block content %}
 
-    <h1>delete.html</h1>
+    <h1> Enter Primary Key to delete car </h1><br>
+    <div class="container">
+        <form class="row g-3" action="" method="POST">
+            {% csrf_token %}
+            <div class="col-md-4">
+              <label for="pk" class="form-label">Car pk: </label>
+              <input type="text" class="form-control" id="pk" name="pk">
+            </div><br>
+            <div class="col-12">
+              <input class="btn btn-primary" type="submit"></input>
+            </div>
+          </form>
+    </div>
 
 {%endblock%}

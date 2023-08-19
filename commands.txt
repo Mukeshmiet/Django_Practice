@@ -340,7 +340,22 @@ Built-in filter reference (
 
     - only for DB operations and user login data changes
 
-    
+    01. created app_cars
+    02. project level templates folder and base.html created
+    03. app level templates/app_cars folders and html files created
+    04. In app_cars:
+        a. views functions created with render html pages
+        b. urls.py file created and assign app_name and path name
+    05. In project_admin:
+        a. app urls.py linked with project urls.py using include
+        b. in settings.py, app installed, and linked project level templates folder
+    06. In base.html, block content created, header and footer added
+    07. extends base.html in all app level html pages and also added block content
+    08. created a app_car model and then run makemigrations app_cars then run migrate
+    09. Add functionality to views connecting to model 
+    10. Created html forms to send info. back to the views using action="" model="POST" and request.POST redirect(reverse())
+
+
 
 
 
