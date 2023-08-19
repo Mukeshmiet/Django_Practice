@@ -355,6 +355,9 @@ Built-in filter reference (
     09. Add functionality to views connecting to model 
     10. Created html forms to send info. back to the views using action="" model="POST" and request.POST redirect(reverse())
 
+    11. Create super user:
+        >>python manage.py createsuperuser and then login on "admin/"
+
 
 
 
