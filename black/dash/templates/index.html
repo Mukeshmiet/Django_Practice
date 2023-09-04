@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        table {
+          border-collapse: collapse;
+          width: 100%;
+        }
+      
+        th, td {
+          border: 1px solid #dddddd;
+          text-align: left;
+          padding: 8px;
+        }
+      
+        tr:nth-child(even) {
+          background-color: #f2f2f2;
+        }
+      </style>
+</head>
+
+<body>
+    <table>
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>ID</th>
+            <th>Title</th>
+            <th>Sector</th>
+            <th>Topic</th>
+            <th>Insight</th>
+            <th>URL</th>
+            <th>Region</th>
+            <th>Country</th>
+            <th>Source</th>
+            <th>Added</th>
+            <th>Published</th>
+            <th>Intensity</th>
+            <th>Relevance</th>
+            <th>Likelihood</th>
+            <th>Pestle</th>
+            <th>Impact</th>
+            <th>Start Year</th>
+            <th>End Year</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for record in records %}
+          <tr>
+            <td>{{forloop.counter}}</td>
+            <td>{{ record.id }}</td>
+            <td>{{ record.title }}</td>
+            <td>{{ record.sector }}</td>
+            <td>{{ record.topic }}</td>
+            <td>{{ record.insight }}</td>
+            <td>{{ record.url }}</td>
+            <td>{{ record.region }}</td>
+            <td>{{ record.country }}</td>
+            <td>{{ record.source }}</td>
+            <td>{{ record.added }}</td>
+            <td>{{ record.published }}</td>
+            <td>{{ record.intensity }}</td>
+            <td>{{ record.relevance }}</td>
+            <td>{{ record.likelihood }}</td>
+            <td>{{ record.pestle }}</td>
+            <td>{{ record.impact }}</td>
+            <td>{{ record.start_year }}</td>
+            <td>{{ record.end_year }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>      
+</body>
+</html>
