@@ -1,0 +1,65 @@
+
+*{
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+}
+
+.chart-menu{
+    width: 100vw;
+    height: 40px;
+    background-color: #b0c3f5;
+    color: #f2f2f2;
+}
+
+.chart-menu p{
+    padding: 10px;
+    font-size: 20px;
+}
+
+.chart-card{
+    width: 100vw;
+    height: calc(100vh - 40px);
+    background-color: #dddddd;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.chart-box{
+    width: 700px;
+    padding: 20px;
+    border-radius: 20px;
+    border: solid 3px rgb(110, 189, 189);
+    background: rgb(239, 226, 203);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+  }
+
+  th, td {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+  }
+
+  tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
