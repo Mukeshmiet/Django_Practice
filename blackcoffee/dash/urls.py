@@ -1,7 +1,10 @@
 from django.urls import path
-from .views import get_dashboard_data, index
+from .views import index, intensity, likelihood,relevance, year
 
 urlpatterns = [
-    path('api/dashboard_data/', get_dashboard_data, name='get_dashboard_data'),
+    path('api/intensity/', intensity, name='intensity'),
+    path('api/likelihood/', likelihood, name='likelihood'),
+    path('api/relevance/', relevance, name='relevance'),
+    path('api/year/', year, name='year'),
     path('', index, name='index'),
 ]
