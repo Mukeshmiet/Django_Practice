@@ -15,43 +15,34 @@
   </div>
   
   <h1>Filter Data</h1>
-    <form method="get" action="{% url 'index' %}">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Search</button>
-    </form>
+  <form method="post" action="{% url 'index' %}">
+    {% csrf_token %}
     
-    {% if queryset %}
-        <h2>Filtered Results:</h2>
-        <table>
-            <thead>
-                <tr>
-                    <th>End Year</th>
-                    <th>Country</th>
-                    <th>Topic</th>
-                    <th>Region</th>
-                    <th>Pestle</th>
-                    <th>Sector</th>
-                    <th>Source</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for item in queryset %}
-                    <tr>
-                        <td>{{ item.end_year }}</td>
-                        <td>{{ item.country }}</td>
-                        <td>{{ item.topic }}</td>
-                        <td>{{ item.region }}</td>
-                        <td>{{ item.pestle }}</td>
-                        <td>{{ item.sector }}</td>
-                        <td>{{ item.source }}</td>
-                    </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-    {% endif %}
+    <label for="{{ form.end_year.id_for_label }}">End Year:</label>
+    {{ form.end_year }}
+    
+    <label for="{{ form.country.id_for_label }}">Country:</label>
+    {{ form.country }}
+    
+    <label for="{{ form.topic.id_for_label }}">Topic:</label>
+    {{ form.topic }}
+    
+    <label for="{{ form.region.id_for_label }}">Region:</label>
+    {{ form.region }}
+    
+    <label for="{{ form.pestle.id_for_label }}">Pestle:</label>
+    {{ form.pestle }}
+    
+    <label for="{{ form.sector.id_for_label }}">Sector:</label>
+    {{ form.sector }}
+    
+    <label for="{{ form.source.id_for_label }}">Source:</label>
+    {{ form.source }}
+    
+    <button type="submit">Search</button>
+</form>
 
-
+    
   <div class="chart-card">
     <div class="chart-box">
       <canvas id="myChartIntensity"></canvas>

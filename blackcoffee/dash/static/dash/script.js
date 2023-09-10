@@ -50,15 +50,12 @@ fetch('/api/intensity/')
     console.error('Error:', error);
 });
 
-
 // Likelihood chart
-
 fetch('/api/likelihood/')
   .then(response => response.json())
   .then(data => {
     // Use the data in your JavaScript code
     let numbersList = JSON.parse(data).map(item => item.likelihood);
-    console.log(numbersList);
 
     // setup data block
     let gdata = {
@@ -103,16 +100,12 @@ fetch('/api/likelihood/')
     console.error('Error:', error);
 });
 
-
 // relevance chart
-
 fetch('/api/relevance/')
   .then(response => response.json())
   .then(data => {
     // Use the data in your JavaScript code
     let numbersList = JSON.parse(data).map(item => item.relevance);
-    console.log('relevance');
-    console.log(numbersList);
 
     // setup data block
     let gdata = {
@@ -157,16 +150,12 @@ fetch('/api/relevance/')
     console.error('Error:', error);
 });
 
-
 // year chart
-
 fetch('/api/year/')
   .then(response => response.json())
   .then(data => {
     // Use the data in your JavaScript code
-    let numbersList = JSON.parse(data).map(item => item.start_year);
-    console.log('year');
-    console.log(numbersList);
+    let numbersList = JSON.parse(data).map(item => item);
 
     // setup data block
     let gdata = {
@@ -195,7 +184,7 @@ fetch('/api/year/')
         indexAxis: "x",
         scales: {
           y: {
-            beginAtZero: true,
+            beginAtZero: false,
           },
         },
       },
